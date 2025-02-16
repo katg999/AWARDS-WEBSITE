@@ -442,3 +442,177 @@ h6,
   padding: 0;
   list-style-type: none;
 }
+
+/* Portfolio Section Base Styles */
+.portfolio {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+/* Portfolio Header Styles */
+.portfolio-header {
+  margin-bottom: 50px;
+}
+
+.portfolio-title {
+  color: var(--dark);
+  position: relative;
+  padding-left: 60px;
+}
+
+.portfolio-title::before,
+.portfolio-title::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 45px;
+  height: 2px;
+}
+
+.portfolio-title::before {
+  top: 10px;
+  background: var(--primary);
+}
+
+.portfolio-title::after {
+  top: 14px;
+  background: var(--secondary);
+}
+
+/* Portfolio Filter Buttons */
+.portfolio-filters {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.portfolio-filter-btn {
+  padding: 8px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--dark);
+  transition: all 0.3s ease;
+}
+
+.portfolio-filter-btn:hover,
+.portfolio-filter-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Portfolio Grid Container */
+.portfolio-container {
+  display: grid;
+  gap: 30px;
+}
+
+/* Portfolio Item Styles */
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Portfolio Image Container */
+.portfolio-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.portfolio-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Portfolio Text Overlay */
+.portfolio-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--primary-rgb), 0.9);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  padding: 2rem;
+}
+
+/* Portfolio Item Hover Effects */
+.portfolio-item:hover .portfolio-img {
+  transform: scale(1.1);
+}
+
+.portfolio-item:hover .portfolio-text {
+  opacity: 1;
+}
+
+/* Portfolio Text Content */
+.portfolio-text h4 {
+  color: #fff;
+  margin-bottom: 1rem;
+  transform: translateY(-20px);
+  transition: transform 0.5s ease;
+}
+
+.portfolio-text p {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transform: translateY(20px);
+  transition: transform 0.5s ease;
+}
+
+/* Portfolio Action Buttons */
+.portfolio-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.portfolio-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary);
+  color: #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.portfolio-btn:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .portfolio-filters {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .portfolio-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .portfolio-title {
+    padding-left: 45px;
+  }
+
+  .portfolio-text h4 {
+    font-size: 1.2rem;
+  }
+}
