@@ -13,7 +13,8 @@ app.use(cors());
 
 // MongoDB Connection
 const mongoURI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/csh_awards";
+  process.env.MONGODB_URI ||
+  "mongodb+srv://katendek64:B9UwNajzpPwBao3h@clusterawards.3yxlv.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAwards";
 mongoose.connect(mongoURI);
 
 const db = mongoose.connection;
