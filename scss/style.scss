@@ -616,3 +616,42 @@ h6,
     font-size: 1.2rem;
   }
 }
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-family: "Arial", sans-serif;
+}
+
+.countdown-item {
+  text-align: center;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
+}
+
+.countdown-item span {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.countdown-label {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.countdown-ended {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff0000;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}

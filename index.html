@@ -121,18 +121,97 @@
           2025
         </h2>
         <div
-          class="d-inline-block bg-primary text-white px-4 py-3"
+          class="d-inline-block bg-primary text-white px-4 py-3 mb-4"
           style="border-radius: 5px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2)"
         >
           <h3 class="m-0 font-weight-bold" style="letter-spacing: 1px">
             ** ENTRIES FOR 2025 NOW OPEN **
           </h3>
         </div>
+        <!-- Deadline and Countdown Section -->
+        <div class="mt-4">
+          <p class="lead text-dark mb-4">
+            Deadline: <strong>1st April 2025, 12:00 GMT</strong>
+          </p>
+          <div id="countdown" class="countdown-timer">
+            <div class="countdown-item">
+              <span id="days"></span>
+              <span class="countdown-label">Days Remaining</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Awards Section End -->
-    <!-- Awards Section End -->
 
+    <!-- JavaScript for Countdown Timer -->
+    <script>
+      // Set the deadline date and time
+      const deadline = new Date("April 1, 2025 12:00:00 GMT").getTime();
+
+      // Update the countdown every second
+      const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const timeRemaining = deadline - now;
+
+        if (timeRemaining >= 0) {
+          // Calculate remaining days only
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+
+          // Display the countdown
+          document.getElementById("days").innerText = days;
+        } else {
+          clearInterval(countdown);
+          document.getElementById("countdown").innerHTML =
+            '<div class="countdown-ended">Submission Closed!</div>';
+        }
+      }, 1000);
+    </script>
+
+    <!-- CSS for Countdown Timer -->
+    <style>
+      .countdown-timer {
+        display: flex;
+        justify-content: center;
+        font-family: "Arial", sans-serif;
+      }
+
+      .countdown-item {
+        text-align: center;
+        background: #ffffff;
+        padding: 1rem 2rem;
+        border-radius: 50px; /* Increased border-radius for pill shape */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        min-width: 400px; /* Increased width for more rectangular shape */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; /* Space between number and text */
+      }
+
+      .countdown-item span {
+        display: inline; /* Changed from block to inline */
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .countdown-label {
+        font-size: 1.5rem !important; /* Override the previous span styles */
+        color: #666;
+        margin-top: 0;
+        font-weight: normal !important;
+      }
+
+      .countdown-ended {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ff0000;
+        padding: 1rem 2rem;
+        background: #fff;
+        border-radius: 50px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+    </style>
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
       <div
@@ -569,6 +648,7 @@
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
       <div class="row pt-5">
+        l
         <div class="col-lg-3 col-md-6 mb-5">
           <a href="index.html" class="navbar-brand">
             <h1 class="m-0 mt-n3 display-4 text-primary">Elevate</h1>
@@ -582,7 +662,8 @@
           <h4 class="font-weight-semi-bold text-primary mb-4">Get In Touch</h4>
           <p>
             <i class="fa fa-map-marker-alt text-primary mr-2"></i>Silverstream
-            House, 45 Fitzroy Street, London, England, WIT6EB
+            House, 45 Fitzroy Street, London, UK/136N.US-42 Waynesville, Ohio,
+            USA
           </p>
           <p>
             <i class="fa fa-phone-alt text-primary mr-2"></i>+44 749 1220970
