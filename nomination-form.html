@@ -94,7 +94,7 @@
               id="navbarCollapse"
             >
               <div class="navbar-nav mr-auto py-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="index.html" class="nav-item nav-link">Enter</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
 
                 <a href="project.html" class="nav-item nav-link">Project</a>
@@ -246,7 +246,7 @@
                       value="International Expansion"
                     />
                     <label class="form-check-label">
-                      International Expansion
+                      Community and Public Health
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -257,7 +257,7 @@
                       value="Digital Transformation"
                     />
                     <label class="form-check-label">
-                      Digital Transformation
+                      Corporate and Insitutional Excellence
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -268,7 +268,40 @@
                       value="Excellence in Client Service"
                     />
                     <label class="form-check-label">
-                      Excellence in Client Service
+                      Government and Policy Leadership
+                    </label>
+                  </div>
+                   <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="excellence"
+                      value="Excellence in Client Service"
+                    />
+                    <label class="form-check-label">
+                      Schools and Educational Institutions
+                    </label>
+                  </div>
+                   <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="excellence"
+                      value="Excellence in Client Service"
+                    />
+                    <label class="form-check-label">
+                      Technology and Innovation
+                    </label>
+                  </div>
+                   <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="excellence"
+                      value="Excellence in Client Service"
+                    />
+                    <label class="form-check-label">
+                      Water, Sanitation and Hygiene(WASH) Advocacy
                     </label>
                   </div>
                 </div>
@@ -471,11 +504,13 @@
         try {
           const response = await fetch(
             "http://localhost:3002/submit-nomination",
+            
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
+               mode: "cors",
               body: JSON.stringify(formData),
             }
           );
