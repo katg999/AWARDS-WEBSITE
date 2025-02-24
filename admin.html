@@ -303,7 +303,7 @@
       });
 
       function fetchRecords() {
-        fetch("http://localhost:3002/nominations")
+        fetch("http://localhost:3002/api/nominations")
           .then((response) => response.json())
           .then((data) => {
             if (Array.isArray(data)) {
