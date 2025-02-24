@@ -35,29 +35,37 @@
     <!-- Header Start -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-3 bg-secondary d-none d-lg-block">
+        <!-- Logo Section -->
+        <div class="col-lg-3 d-none d-lg-block">
           <a
             href="#"
-            class="navbar-brand w-50 h-50 m-0 p-0 d-flex align-items-center justify-content-center"
-            style="border: 2px solid red"
+            class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
+            style="height: 120px"
+            Increased
+            height
+            for
+            the
+            container
+            --
           >
             <img
-              src="/img/elevant_icon.jpg"
+              src="img/elevant_icon.jpg"
               alt="ELEVATE Logo"
               class="logo"
-              style="border: 2px solid blue"
+              style="width: 80px; height: 80px"
+              Fixed
+              size
+              for
+              the
+              logo
+              --
             />
           </a>
-
-          <style>
-            .logo {
-              width: 100%; /* Adjust as needed */
-              height: auto; /* Maintain aspect ratio */
-              max-width: 150px; /* Optional: Limit maximum size */
-            }
-          </style>
         </div>
+
+        <!-- Contact Info and Navigation Section -->
         <div class="col-lg-9">
+          <!-- Top Bar (Contact Info and Social Media) -->
           <div class="row bg-dark d-none d-lg-flex">
             <div class="col-lg-7 text-left text-white">
               <div
@@ -68,7 +76,7 @@
               </div>
               <div class="h-100 d-inline-flex align-items-center py-2 px-2">
                 <i class="fa fa-phone-alt text-primary mr-2"></i>
-                <small>+44 7491220970 </small>
+                <small>+44 7491220970</small>
               </div>
             </div>
             <div class="col-lg-5 text-right">
@@ -91,6 +99,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Navigation Bar -->
           <nav class="navbar navbar-expand-lg bg-white navbar-light p-0">
             <a href="" class="navbar-brand d-block d-lg-none">
               <h1 class="m-0 display-4 text-primary">Elevate</h1>
@@ -110,22 +120,28 @@
               <div class="navbar-nav mr-auto py-0">
                 <a href="index.html" class="nav-item nav-link active">Enter</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
-
                 <a href="project.html" class="nav-item nav-link">Project</a>
-                <div class="nav-item dropdown"></div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
               </div>
               <a
                 href="nomination-form.html"
                 class="btn btn-primary mr-3 d-none d-lg-block"
-                >Go To The Entry Form
-              </a>
+                >Go To The Entry Form</a
+              >
             </div>
           </nav>
         </div>
       </div>
     </div>
     <!-- Header End -->
+
+    <style>
+      .logo {
+        width: 80px; /* Fixed width */
+        height: 80px; /* Fixed height */
+        object-fit: contain; /* Ensures the image fits within the dimensions */
+      }
+    </style>
 
     <!-- Awards Section Start -->
     <div class="container-fluid py-5 bg-light">
