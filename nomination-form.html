@@ -96,9 +96,7 @@
               <div class="navbar-nav mr-auto py-0">
                 <a href="index.html" class="nav-item nav-link">Enter</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
-
                 <a href="project.html" class="nav-item nav-link">Project</a>
-
                 <a href="contact.html" class="nav-item nav-link active"
                   >Contact</a
                 >
@@ -121,8 +119,6 @@
             <h1 class="display-4 mb-4 mb-md-0 text-secondary text-uppercase">
               Nomination Form
             </h1>
-          </div>
-         
           </div>
         </div>
       </div>
@@ -150,26 +146,25 @@
           <div class="col-lg-12 mb-5 mb-lg-0">
             <div class="contact-form">
               <form id="contactForm" onsubmit="submitForm(event)" novalidate>
-                <!-- Title -->
+                <!-- Nominator Details -->
+                <!-- Nominator Details -->
+                <h4 class="text-secondary mb-4">Nominator Details</h4>
+                <!-- Nominator Title Input -->
                 <div class="form-group control-group">
-                  <select class="form-control p-4" id="title" required>
-                    <option value="">Select Title</option>
-                    <option>Mr.</option>
-                    <option>Mrs.</option>
-                    <option>Ms.</option>
-                    <option>Dr.</option>
-                    <option>Prof.</option>
-                  </select>
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    id="nominatorTitle"
+                    placeholder="Nominator Title (e.g., Mr., Mrs., Dr.)"
+                  />
                   <p class="help-block text-danger"></p>
                 </div>
-
-                <!-- Name -->
                 <div class="form-row">
                   <div class="col-sm-6 control-group">
                     <input
                       type="text"
                       class="form-control p-4"
-                      id="firstName"
+                      id="nominatorFirstName"
                       placeholder="First Name"
                       required
                     />
@@ -179,56 +174,113 @@
                     <input
                       type="text"
                       class="form-control p-4"
-                      id="lastName"
+                      id="nominatorLastName"
                       placeholder="Last Name"
                       required
                     />
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
-
-                <!-- Organization -->
+                <div class="control-group">
+                  <input
+                    type="email"
+                    class="form-control p-4"
+                    id="nominatorEmail"
+                    placeholder="Email"
+                    required
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="control-group">
+                  <input
+                    type="tel"
+                    class="form-control p-4"
+                    id="nominatorPhone"
+                    placeholder="Phone"
+                    required
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
                 <div class="control-group">
                   <input
                     type="text"
                     class="form-control p-4"
-                    id="organization"
+                    id="nominatorOrganization"
                     placeholder="Organization"
                     required
                   />
                   <p class="help-block text-danger"></p>
                 </div>
 
-                <!-- Contact Info -->
+                <!-- Nominee Details -->
+                <h4 class="text-secondary mt-5 mb-4">Nominee Details</h4>
+                <!-- Nominee Title Input -->
+                <div class="form-group control-group">
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    id="nomineeTitle"
+                    placeholder="Nominee Title (e.g., Mr., Mrs., Dr.)"
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
                 <div class="form-row">
                   <div class="col-sm-6 control-group">
                     <input
-                      type="email"
+                      type="text"
                       class="form-control p-4"
-                      id="email"
-                      placeholder="Email"
+                      id="nomineeFirstName"
+                      placeholder="First Name"
                       required
                     />
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="col-sm-6 control-group">
                     <input
-                      type="tel"
+                      type="text"
                       class="form-control p-4"
-                      id="phone"
-                      placeholder="Phone"
+                      id="nomineeLastName"
+                      placeholder="Last Name"
                       required
                     />
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
-
-                <!-- Address -->
+                <div class="control-group">
+                  <input
+                    type="email"
+                    class="form-control p-4"
+                    id="nomineeEmail"
+                    placeholder="Email"
+                    required
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="control-group">
+                  <input
+                    type="tel"
+                    class="form-control p-4"
+                    id="nomineePhone"
+                    placeholder="Phone"
+                    required
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="control-group">
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    id="nomineeOrganization"
+                    placeholder="Organization"
+                    required
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
                 <div class="control-group">
                   <textarea
                     class="form-control p-4"
                     rows="3"
-                    id="address"
+                    id="nomineeAddress"
                     placeholder="Full Address"
                     required
                   ></textarea>
@@ -242,8 +294,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="international"
-                      value="International Expansion"
+                      id="communityHealth"
+                      value="Community and Public Health"
                     />
                     <label class="form-check-label">
                       Community and Public Health
@@ -253,56 +305,78 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="digital"
-                      value="Digital Transformation"
+                      id="corporateExcellence"
+                      value="Corporate and Institutional Excellence"
                     />
                     <label class="form-check-label">
-                      Corporate and Insitutional Excellence
+                      Corporate and Institutional Excellence
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="excellence"
-                      value="Excellence in Client Service"
+                      id="governmentLeadership"
+                      value="Government and Policy Leadership"
                     />
                     <label class="form-check-label">
                       Government and Policy Leadership
                     </label>
                   </div>
-                   <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="excellence"
-                      value="Excellence in Client Service"
+                      id="schools"
+                      value="Schools and Educational Institutions"
                     />
                     <label class="form-check-label">
                       Schools and Educational Institutions
                     </label>
                   </div>
-                   <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="excellence"
-                      value="Excellence in Client Service"
+                      id="technology"
+                      value="Technology and Innovation"
                     />
                     <label class="form-check-label">
                       Technology and Innovation
                     </label>
                   </div>
-                   <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="excellence"
-                      value="Excellence in Client Service"
+                      id="washAdvocacy"
+                      value="Water, Sanitation and Hygiene (WASH) Advocacy"
                     />
                     <label class="form-check-label">
-                      Water, Sanitation and Hygiene(WASH) Advocacy
+                      Water, Sanitation and Hygiene (WASH) Advocacy
                     </label>
+                  </div>
+                </div>
+
+                <!-- Supporting Documents -->
+                
+                  <div class="form-group">
+                    <label for="videoLink">YouTube Video Link</label>
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="videoLink"
+                      placeholder="Enter YouTube Video URL"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="otherLinks">Other Supporting Links</label>
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="otherLinks"
+                      placeholder="Enter Supporting Links"
+                    />
                   </div>
                 </div>
 
@@ -330,9 +404,7 @@
           <a href="index.html" class="navbar-brand">
             <h1 class="m-0 mt-n3 display-4 text-primary">Elevate</h1>
           </a>
-          <p>
-           An Award Winning Sanitation Company Located In United Kingdom
-          </p>
+          <p>An Award Winning Sanitation Company Located In United Kingdom</p>
           <h5 class="font-weight-semi-bold text-white mb-2">Opening Hours:</h5>
           <p class="mb-1">Mon – Sat, 8AM – 5PM</p>
           <p class="mb-0">Sunday: Closed</p>
@@ -345,7 +417,8 @@
           </p>
           <p><i class="fa fa-phone-alt text-primary mr-2"></i>+44 7491220970</p>
           <p>
-            <i class="fa fa-envelope text-primary mr-2"></i>info@elevatebridgebuilders.com
+            <i class="fa fa-envelope text-primary mr-2"></i
+            >info@elevatebridgebuilders.com
           </p>
           <div class="d-flex justify-content-start mt-4">
             <a class="btn btn-light btn-social mr-2" href="#"
@@ -371,7 +444,6 @@
             <a class="text-white mb-2" href="contact.html"
               ><i class="fa fa-angle-right mr-2"></i>About Us</a
             >
-           
             <a class="text-white mb-2" href="project.html"
               ><i class="fa fa-angle-right mr-2"></i>Our Projects</a
             >
@@ -382,9 +454,7 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
           <h4 class="font-weight-semi-bold text-primary mb-4">Newsletter</h4>
-          <p>
-           Get To Know More About Us Through Our Newsletter
-          </p>
+          <p>Get To Know More About Us Through Our Newsletter</p>
           <div class="w-100">
             <div class="input-group">
               <input
@@ -447,96 +517,107 @@
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-    <!-- Removed mail scripts -->
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
       async function submitForm(event) {
-        event.preventDefault();
+  event.preventDefault();
 
-        // Clear any previous messages
-        const formMessages = document.getElementById("formMessages");
-        formMessages.innerHTML = "";
+  // Clear any previous messages
+  const formMessages = document.getElementById("formMessages");
+  formMessages.innerHTML = "";
 
-        // Retrieve form values and trim whitespace
-        const title = document.getElementById("title").value.trim();
-        const firstName = document.getElementById("firstName").value.trim();
-        const lastName = document.getElementById("lastName").value.trim();
-        const organization = document
-          .getElementById("organization")
-          .value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const address = document.getElementById("address").value.trim();
+  // Retrieve form values and trim whitespace
+  const nominatorTitle = document
+    .getElementById("nominatorTitle")
+    .value.trim();
+  const nominatorFirstName = document
+    .getElementById("nominatorFirstName")
+    .value.trim();
+  const nominatorLastName = document
+    .getElementById("nominatorLastName")
+    .value.trim();
+  const nominatorEmail = document
+    .getElementById("nominatorEmail")
+    .value.trim();
+  const nominatorPhone = document
+    .getElementById("nominatorPhone")
+    .value.trim();
+  const nominatorOrganization = document
+    .getElementById("nominatorOrganization")
+    .value.trim();
 
-        // Collect checked nomination categories
-        const categories = Array.from(
-          document.querySelectorAll('input[type="checkbox"]:checked')
-        ).map((checkbox) => checkbox.value);
+  const nomineeTitle = document
+    .getElementById("nomineeTitle")
+    .value.trim();
+  const nomineeFirstName = document
+    .getElementById("nomineeFirstName")
+    .value.trim();
+  const nomineeLastName = document
+    .getElementById("nomineeLastName")
+    .value.trim();
+  const nomineeEmail = document
+    .getElementById("nomineeEmail")
+    .value.trim();
+  const nomineePhone = document
+    .getElementById("nomineePhone")
+    .value.trim();
+  const nomineeOrganization = document
+    .getElementById("nomineeOrganization")
+    .value.trim();
+  const nomineeAddress = document
+    .getElementById("nomineeAddress")
+    .value.trim();
 
-        // Client-side check to ensure all required fields are filled.
-        if (
-          !title ||
-          !firstName ||
-          !lastName ||
-          !organization ||
-          !email ||
-          !phone ||
-          !address
-        ) {
-          formMessages.innerHTML =
-            '<div class="alert alert-danger" role="alert">Please fill in all required fields.</div>';
-          return;
-        }
+  // Collect checked nomination categories
+  const categories = Array.from(
+    document.querySelectorAll('input[type="checkbox"]:checked')
+  ).map((checkbox) => checkbox.value);
 
-        const formData = {
-          title,
-          firstName,
-          lastName,
-          organization,
-          email,
-          phone,
-          address,
-          categories,
-        };
+  // Create the request body
+  const requestBody = {
+    nominatorTitle,
+    nominatorFirstName,
+    nominatorLastName,
+    nominatorEmail,
+    nominatorPhone,
+    nominatorOrganization,
+    nomineeTitle,
+    nomineeFirstName,
+    nomineeLastName,
+    nomineeEmail,
+    nomineePhone,
+    nomineeOrganization,
+    nomineeAddress,
+    categories: JSON.stringify(categories), // Convert categories array to JSON string
+  };
 
-        try {
-          const response = await fetch(
-            "http://localhost:3002/submit-nomination",
-            
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-               mode: "cors",
-              body: JSON.stringify(formData),
-            }
-          );
+  try {
+    // Submit the form data
+    const response = await fetch("http://localhost:3002/submit-nomination", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
 
-          const data = await response.json();
+    const data = await response.json();
 
-          if (!response.ok) {
-            const errorMsg =
-              data.error || "Submission failed. Please try again.";
-            formMessages.innerHTML =
-              '<div class="alert alert-danger" role="alert">' +
-              errorMsg +
-              "</div>";
-          } else {
-            formMessages.innerHTML =
-              '<div class="alert alert-success" role="alert">' +
-              data.message +
-              "</div>";
-            document.getElementById("contactForm").reset();
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          formMessages.innerHTML =
-            '<div class="alert alert-danger" role="alert">An error occurred. Please try again later.</div>';
-        }
-      }
+    if (!response.ok) {
+      throw new Error(data.error || "Submission failed. Please try again.");
+    }
+
+    // Display success message
+    formMessages.innerHTML =
+      '<div class="alert alert-success" role="alert">Nomination submitted successfully!</div>';
+    document.getElementById("contactForm").reset();
+  } catch (error) {
+    console.error("Error:", error);
+    formMessages.innerHTML =
+      '<div class="alert alert-danger" role="alert">' + error.message + "</div>";
+  }
+}
     </script>
   </body>
 </html>

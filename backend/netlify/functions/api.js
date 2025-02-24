@@ -1,9 +1,15 @@
-require("dotenv").config();
+// netlify/functions/api.js
+
 const express = require("express");
-const bodyParser = require("body-parser");
+const serverless = require("serverless-http");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 
+// Load environment variables
+require("dotenv").config();
+
+// Initialize Express app
 const app = express();
 
 // Middleware
@@ -49,8 +55,11 @@ const nominationSchema = new mongoose.Schema({
 
 const Nomination = mongoose.model("Nomination", nominationSchema);
 
+// Routes
+const router = express.Router();
+
 // Endpoint to submit a nomination
-app.post("/api/submit-nomination", async (req, res) => {
+router.post("/submit-nomination", async (req, res) => {
   try {
     const {
       // Nominator Details
@@ -110,7 +119,7 @@ app.post("/api/submit-nomination", async (req, res) => {
 });
 
 // Endpoint to get all nominations (for admin or review purposes)
-app.get("/api/nominations", async (req, res) => {
+router.get("/nominations", async (req, res) => {
   try {
     const nominations = await Nomination.find().sort({ submittedAt: -1 });
     res.json(nominations);
@@ -120,5 +129,8 @@ app.get("/api/nominations", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3002;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Use the router
+app.use("/.netlify/functions/api", router); // Base path for Netlify Functions
+
+// Export the handler
+module.exports.handler = serverless(app);
