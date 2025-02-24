@@ -147,16 +147,16 @@
             <div class="contact-form">
               <form id="contactForm" onsubmit="submitForm(event)" novalidate>
                 <!-- Nominator Details -->
+                <!-- Nominator Details -->
                 <h4 class="text-secondary mb-4">Nominator Details</h4>
+                <!-- Nominator Title Input -->
                 <div class="form-group control-group">
-                  <select class="form-control p-4" id="nominatorTitle" required>
-                    <option value="">Select Title</option>
-                    <option>Mr.</option>
-                    <option>Mrs.</option>
-                    <option>Ms.</option>
-                    <option>Dr.</option>
-                    <option>Prof.</option>
-                  </select>
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    id="nominatorTitle"
+                    placeholder="Nominator Title (e.g., Mr., Mrs., Dr.)"
+                  />
                   <p class="help-block text-danger"></p>
                 </div>
                 <div class="form-row">
@@ -214,15 +214,14 @@
 
                 <!-- Nominee Details -->
                 <h4 class="text-secondary mt-5 mb-4">Nominee Details</h4>
+                <!-- Nominee Title Input -->
                 <div class="form-group control-group">
-                  <select class="form-control p-4" id="nomineeTitle" required>
-                    <option value="">Select Title</option>
-                    <option>Mr.</option>
-                    <option>Mrs.</option>
-                    <option>Ms.</option>
-                    <option>Dr.</option>
-                    <option>Prof.</option>
-                  </select>
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    id="nomineeTitle"
+                    placeholder="Nominee Title (e.g., Mr., Mrs., Dr.)"
+                  />
                   <p class="help-block text-danger"></p>
                 </div>
                 <div class="form-row">
@@ -360,17 +359,7 @@
                 </div>
 
                 <!-- Supporting Documents -->
-                <div class="form-group mt-4">
-                  <h6 class="text-secondary mb-3">Supporting Documents</h6>
-                  <div class="form-group">
-                    <label for="pdfUpload">Upload PDF (Max 5MB)</label>
-                    <input
-                      type="file"
-                      class="form-control-file"
-                      id="pdfUpload"
-                      accept=".pdf"
-                    />
-                  </div>
+                
                   <div class="form-group">
                     <label for="videoLink">YouTube Video Link</label>
                     <input
@@ -532,135 +521,103 @@
     <script src="js/main.js"></script>
     <script>
       async function submitForm(event) {
-        event.preventDefault();
+  event.preventDefault();
 
-        // Clear any previous messages
-        const formMessages = document.getElementById("formMessages");
-        formMessages.innerHTML = "";
+  // Clear any previous messages
+  const formMessages = document.getElementById("formMessages");
+  formMessages.innerHTML = "";
 
-        // Retrieve form values and trim whitespace
-        const nominatorTitle = document
-          .getElementById("nominatorTitle")
-          .value.trim();
-        const nominatorFirstName = document
-          .getElementById("nominatorFirstName")
-          .value.trim();
-        const nominatorLastName = document
-          .getElementById("nominatorLastName")
-          .value.trim();
-        const nominatorEmail = document
-          .getElementById("nominatorEmail")
-          .value.trim();
-        const nominatorPhone = document
-          .getElementById("nominatorPhone")
-          .value.trim();
-        const nominatorOrganization = document
-          .getElementById("nominatorOrganization")
-          .value.trim();
+  // Retrieve form values and trim whitespace
+  const nominatorTitle = document
+    .getElementById("nominatorTitle")
+    .value.trim();
+  const nominatorFirstName = document
+    .getElementById("nominatorFirstName")
+    .value.trim();
+  const nominatorLastName = document
+    .getElementById("nominatorLastName")
+    .value.trim();
+  const nominatorEmail = document
+    .getElementById("nominatorEmail")
+    .value.trim();
+  const nominatorPhone = document
+    .getElementById("nominatorPhone")
+    .value.trim();
+  const nominatorOrganization = document
+    .getElementById("nominatorOrganization")
+    .value.trim();
 
-        const nomineeTitle = document
-          .getElementById("nomineeTitle")
-          .value.trim();
-        const nomineeFirstName = document
-          .getElementById("nomineeFirstName")
-          .value.trim();
-        const nomineeLastName = document
-          .getElementById("nomineeLastName")
-          .value.trim();
-        const nomineeEmail = document
-          .getElementById("nomineeEmail")
-          .value.trim();
-        const nomineePhone = document
-          .getElementById("nomineePhone")
-          .value.trim();
-        const nomineeOrganization = document
-          .getElementById("nomineeOrganization")
-          .value.trim();
-        const nomineeAddress = document
-          .getElementById("nomineeAddress")
-          .value.trim();
+  const nomineeTitle = document
+    .getElementById("nomineeTitle")
+    .value.trim();
+  const nomineeFirstName = document
+    .getElementById("nomineeFirstName")
+    .value.trim();
+  const nomineeLastName = document
+    .getElementById("nomineeLastName")
+    .value.trim();
+  const nomineeEmail = document
+    .getElementById("nomineeEmail")
+    .value.trim();
+  const nomineePhone = document
+    .getElementById("nomineePhone")
+    .value.trim();
+  const nomineeOrganization = document
+    .getElementById("nomineeOrganization")
+    .value.trim();
+  const nomineeAddress = document
+    .getElementById("nomineeAddress")
+    .value.trim();
 
-        // Collect checked nomination categories
-        const categories = Array.from(
-          document.querySelectorAll('input[type="checkbox"]:checked')
-        ).map((checkbox) => checkbox.value);
+  // Collect checked nomination categories
+  const categories = Array.from(
+    document.querySelectorAll('input[type="checkbox"]:checked')
+  ).map((checkbox) => checkbox.value);
 
-        // Supporting Documents
-        const pdfUpload = document.getElementById("pdfUpload").files[0];
-        const videoLink = document.getElementById("videoLink").value.trim();
-        const otherLinks = document.getElementById("otherLinks").value.trim();
+  // Create the request body
+  const requestBody = {
+    nominatorTitle,
+    nominatorFirstName,
+    nominatorLastName,
+    nominatorEmail,
+    nominatorPhone,
+    nominatorOrganization,
+    nomineeTitle,
+    nomineeFirstName,
+    nomineeLastName,
+    nomineeEmail,
+    nomineePhone,
+    nomineeOrganization,
+    nomineeAddress,
+    categories: JSON.stringify(categories), // Convert categories array to JSON string
+  };
 
-        // Client-side check to ensure all required fields are filled.
-        if (
-          !nominatorTitle ||
-          !nominatorFirstName ||
-          !nominatorLastName ||
-          !nominatorEmail ||
-          !nominatorPhone ||
-          !nominatorOrganization ||
-          !nomineeTitle ||
-          !nomineeFirstName ||
-          !nomineeLastName ||
-          !nomineeEmail ||
-          !nomineePhone ||
-          !nomineeOrganization ||
-          !nomineeAddress
-        ) {
-          formMessages.innerHTML =
-            '<div class="alert alert-danger" role="alert">Please fill in all required fields.</div>';
-          return;
-        }
+  try {
+    // Submit the form data
+    const response = await fetch("http://localhost:3002/submit-nomination", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
 
-        const formData = new FormData();
-        formData.append("nominatorTitle", nominatorTitle);
-        formData.append("nominatorFirstName", nominatorFirstName);
-        formData.append("nominatorLastName", nominatorLastName);
-        formData.append("nominatorEmail", nominatorEmail);
-        formData.append("nominatorPhone", nominatorPhone);
-        formData.append("nominatorOrganization", nominatorOrganization);
-        formData.append("nomineeTitle", nomineeTitle);
-        formData.append("nomineeFirstName", nomineeFirstName);
-        formData.append("nomineeLastName", nomineeLastName);
-        formData.append("nomineeEmail", nomineeEmail);
-        formData.append("nomineePhone", nomineePhone);
-        formData.append("nomineeOrganization", nomineeOrganization);
-        formData.append("nomineeAddress", nomineeAddress);
-        formData.append("categories", JSON.stringify(categories));
-        if (pdfUpload) formData.append("pdfUpload", pdfUpload);
-        if (videoLink) formData.append("videoLink", videoLink);
-        if (otherLinks) formData.append("otherLinks", otherLinks);
+    const data = await response.json();
 
-        try {
-          const response = await fetch(
-            "http://localhost:3002/submit-nomination",
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
+    if (!response.ok) {
+      throw new Error(data.error || "Submission failed. Please try again.");
+    }
 
-          const data = await response.json();
-
-          if (!response.ok) {
-            const errorMsg =
-              data.error || "Submission failed. Please try again.";
-            formMessages.innerHTML =
-              '<div class="alert alert-danger" role="alert">' +
-              errorMsg +
-              "</div>";
-          } else {
-            formMessages.innerHTML =
-              '<div class="alert alert-success" role="alert">' +
-              data.message +
-              "</div>";
-            document.getElementById("contactForm").reset();
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          formMessages.innerHTML =
-            '<div class="alert alert-danger" role="alert">An error occurred. Please try again later.</div>';
-        }
-      }
+    // Display success message
+    formMessages.innerHTML =
+      '<div class="alert alert-success" role="alert">Nomination submitted successfully!</div>';
+    document.getElementById("contactForm").reset();
+  } catch (error) {
+    console.error("Error:", error);
+    formMessages.innerHTML =
+      '<div class="alert alert-danger" role="alert">' + error.message + "</div>";
+  }
+}
     </script>
   </body>
 </html>

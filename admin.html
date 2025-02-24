@@ -97,9 +97,7 @@
               <div class="navbar-nav mr-auto py-0">
                 <a href="index.html" class="nav-item nav-link">Enter</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
-
                 <a href="project.html" class="nav-item nav-link">Project</a>
-
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
               </div>
               <a
@@ -152,13 +150,19 @@
         <table class="table table-bordered table-striped">
           <thead class="thead-dark">
             <tr>
-              <th>Title</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Organization</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Address</th>
+              <th>Nominator Title</th>
+              <th>Nominator First Name</th>
+              <th>Nominator Last Name</th>
+              <th>Nominator Email</th>
+              <th>Nominator Phone</th>
+              <th>Nominator Organization</th>
+              <th>Nominee Title</th>
+              <th>Nominee First Name</th>
+              <th>Nominee Last Name</th>
+              <th>Nominee Email</th>
+              <th>Nominee Phone</th>
+              <th>Nominee Organization</th>
+              <th>Nominee Address</th>
               <th>Categories</th>
               <th>Submitted At</th>
             </tr>
@@ -178,7 +182,7 @@
           <a href="index.html" class="navbar-brand">
             <h1 class="m-0 mt-n3 display-4 text-primary">Elevate</h1>
           </a>
-          <p>>An Award Winning Sanitation Company Located In United Kingdom</p>
+          <p>An Award Winning Sanitation Company Located In United Kingdom</p>
           <h5 class="font-weight-semi-bold text-white mb-2">Opening Hours:</h5>
           <p class="mb-1">Mon – Sat, 8AM – 5PM</p>
           <p class="mb-0">Sunday: Closed</p>
@@ -218,7 +222,6 @@
             <a class="text-white mb-2" href="about.html"
               ><i class="fa fa-angle-right mr-2"></i>About Us</a
             >
-
             <a class="text-white mb-2" href="project.html"
               ><i class="fa fa-angle-right mr-2"></i>Our Projects</a
             >
@@ -312,13 +315,19 @@
               data.forEach((record) => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
-                  <td>${record.title}</td>
-                  <td>${record.firstName}</td>
-                  <td>${record.lastName}</td>
-                  <td>${record.organization}</td>
-                  <td>${record.email}</td>
-                  <td>${record.phone}</td>
-                  <td>${record.address}</td>
+                  <td>${record.nominatorTitle}</td>
+                  <td>${record.nominatorFirstName}</td>
+                  <td>${record.nominatorLastName}</td>
+                  <td>${record.nominatorEmail}</td>
+                  <td>${record.nominatorPhone}</td>
+                  <td>${record.nominatorOrganization}</td>
+                  <td>${record.nomineeTitle}</td>
+                  <td>${record.nomineeFirstName}</td>
+                  <td>${record.nomineeLastName}</td>
+                  <td>${record.nomineeEmail}</td>
+                  <td>${record.nomineePhone}</td>
+                  <td>${record.nomineeOrganization}</td>
+                  <td>${record.nomineeAddress}</td>
                   <td>${record.categories.join(", ")}</td>
                   <td>${new Date(record.submittedAt).toLocaleString()}</td>
                 `;
