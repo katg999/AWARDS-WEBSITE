@@ -15,7 +15,8 @@ app.use(cors());
 app.use("/uploads", express.static("uploads")); // Serve uploaded files statically
 
 // MongoDB Connection
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI =
+  "mongodb+srv://katendek64:B9UwNajzpPwBao3h@clusterawards.3yxlv.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAwards";
 mongoose.connect(mongoURI);
 
 const db = mongoose.connection;
