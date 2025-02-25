@@ -35,12 +35,31 @@
     <!-- Header Start -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-3 bg-secondary d-none d-lg-block">
+        <!-- Logo Section -->
+        <div class="col-lg-3 d-none d-lg-block">
           <a
-            href=""
+            href="#"
             class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
+            style="height: 120px"
+            Increased
+            height
+            for
+            the
+            container
+            --
           >
-            <h1 class="m-0 display-3 text-primary">Elevate</h1>
+            <img
+              src="img/elevant_icon.jpg"
+              alt="ELEVATE Logo"
+              class="logo"
+              style="width: 80px; height: 80px"
+              Fixed
+              size
+              for
+              the
+              logo
+              --
+            />
           </a>
         </div>
         <div class="col-lg-9">
@@ -165,7 +184,7 @@
                       type="text"
                       class="form-control p-4"
                       id="nominatorFirstName"
-                      placeholder="First Name"
+                      placeholder="First Name *"
                       required
                     />
                     <p class="help-block text-danger"></p>
@@ -175,7 +194,7 @@
                       type="text"
                       class="form-control p-4"
                       id="nominatorLastName"
-                      placeholder="Last Name"
+                      placeholder="Last Name *"
                       required
                     />
                     <p class="help-block text-danger"></p>
@@ -186,7 +205,7 @@
                     type="email"
                     class="form-control p-4"
                     id="nominatorEmail"
-                    placeholder="Email"
+                    placeholder="Email *"
                     required
                   />
                   <p class="help-block text-danger"></p>
@@ -196,7 +215,7 @@
                     type="tel"
                     class="form-control p-4"
                     id="nominatorPhone"
-                    placeholder="Phone"
+                    placeholder="Phone *"
                     required
                   />
                   <p class="help-block text-danger"></p>
@@ -206,7 +225,7 @@
                     type="text"
                     class="form-control p-4"
                     id="nominatorOrganization"
-                    placeholder="Organization"
+                    placeholder="Organization *"
                     required
                   />
                   <p class="help-block text-danger"></p>
@@ -230,7 +249,7 @@
                       type="text"
                       class="form-control p-4"
                       id="nomineeFirstName"
-                      placeholder="First Name"
+                      placeholder="First Name *"
                       required
                     />
                     <p class="help-block text-danger"></p>
@@ -240,18 +259,19 @@
                       type="text"
                       class="form-control p-4"
                       id="nomineeLastName"
-                      placeholder="Last Name"
+                      placeholder="Last Name *"
                       required
                     />
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="control-group">
+                  
                   <input
                     type="email"
                     class="form-control p-4"
                     id="nomineeEmail"
-                    placeholder="Email"
+                    placeholder="Email *"
                     required
                   />
                   <p class="help-block text-danger"></p>
@@ -267,11 +287,14 @@
                   <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
+                  
+                  
                   <input
                     type="text"
                     class="form-control p-4"
                     id="nomineeOrganization"
-                    placeholder="Organization"
+                    placeholder="Organization *"
+                    
                     required
                   />
                   <p class="help-block text-danger"></p>
@@ -281,7 +304,7 @@
                     class="form-control p-4"
                     rows="3"
                     id="nomineeAddress"
-                    placeholder="Full Address"
+                    placeholder="Full Address *"
                     required
                   ></textarea>
                   <p class="help-block text-danger"></p>
@@ -359,54 +382,58 @@
                 </div>
 
                 <!-- Supporting Documents -->
+<div class="form-group">
+  <label for="videoLink">YouTube Video Link (About The Company Or Any Vidoe Link You Consider Relevant) <span class="required">*</span></label>
+  <input
+    type="url"
+    class="form-control"
+    id="videoLink"
+    placeholder="Enter YouTube Video URL"
+    required
+  />
+</div>
+<div class="form-group">
+  <label for="otherLinks">Other Supporting Links</label>
+  <input
+    type="url"
+    class="form-control"
+    id="otherLinks"
+    placeholder="Enter Supporting Links"
+  />
+</div>
+<div class="form-group">
+   <style>
+    .required {
+      color: red;
+      font-size: 1.2em;
+    }
+  </style>
+  <label for="file"> Supporting Document <span class="required">*</span></label>
+  <input type="file" class="form-control" id="file" required />
+</div>
+<div class="form-group">
+  <label for="image"
+    >Organisational Image Logo / Directors Image <span class="required">*</span></label
+  >
+  <input
+    type="file"
+    class="form-control"
+    id="image"
+    accept="image/*"
+    required
+  />
+</div>
 
-                <div class="form-group">
-                  <label for="videoLink">YouTube Video Link</label>
-                  <input
-                    type="url"
-                    class="form-control"
-                    id="videoLink"
-                    placeholder="Enter YouTube Video URL"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="otherLinks">Other Supporting Links</label>
-                  <input
-                    type="url"
-                    class="form-control"
-                    id="otherLinks"
-                    placeholder="Enter Supporting Links"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="file">Document</label>
-                  <input type="file" class="form-control" id="file" />
-                </div>
-                <div class="form-group">
-                  <label for="image">Other Images</label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="image"
-                    accept="image/*"
-                  />
-                </div>
 
-                <div class="mt-5">
-                  <button
-                    class="btn btn-primary btn-block py-3 px-5"
-                    type="submit"
-                    id="sendMessageButton"
-                  >
-                    Submit Nomination
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="mt-5">
+  <button
+    class="btn btn-primary btn-block py-3 px-5"
+    type="submit"
+    id="sendMessageButton"
+  >
+    Submit Nomination
+  </button>
+</div>
     <!-- Contact End -->
 
     <!-- Footer Start -->
