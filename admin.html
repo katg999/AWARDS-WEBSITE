@@ -165,8 +165,14 @@
               <th>Nominee Address</th>
               <th>Categories</th>
               <th>Submitted At</th>
+              <th>Nominee Image</th>
+              <th>File</th>
             </tr>
           </thead>
+          <tbody id="recordsTableBody">
+            <!-- Records will be injected here via JavaScript -->
+          </tbody>
+
           <tbody id="recordsTableBody">
             <!-- Records will be injected here via JavaScript -->
           </tbody>
@@ -307,30 +313,50 @@
           .then((response) => response.json())
           .then((data) => {
             if (Array.isArray(data)) {
-              // Update record count
               document.getElementById("totalRecords").textContent = data.length;
 
               const tbody = document.getElementById("recordsTableBody");
               tbody.innerHTML = "";
+
               data.forEach((record) => {
                 const tr = document.createElement("tr");
+
                 tr.innerHTML = `
-                  <td>${record.nominatorTitle}</td>
-                  <td>${record.nominatorFirstName}</td>
-                  <td>${record.nominatorLastName}</td>
-                  <td>${record.nominatorEmail}</td>
-                  <td>${record.nominatorPhone}</td>
-                  <td>${record.nominatorOrganization}</td>
-                  <td>${record.nomineeTitle}</td>
-                  <td>${record.nomineeFirstName}</td>
-                  <td>${record.nomineeLastName}</td>
-                  <td>${record.nomineeEmail}</td>
-                  <td>${record.nomineePhone}</td>
-                  <td>${record.nomineeOrganization}</td>
-                  <td>${record.nomineeAddress}</td>
-                  <td>${record.categories.join(", ")}</td>
-                  <td>${new Date(record.submittedAt).toLocaleString()}</td>
-                `;
+            <td>${record.nominatorTitle}</td>
+            <td>${record.nominatorFirstName}</td>
+            <td>${record.nominatorLastName}</td>
+            <td>${record.nominatorEmail}</td>
+            <td>${record.nominatorPhone}</td>
+            <td>${record.nominatorOrganization}</td>
+            <td>${record.nomineeTitle}</td>
+            <td>${record.nomineeFirstName}</td>
+            <td>${record.nomineeLastName}</td>
+            <td>${record.nomineeEmail}</td>
+            <td>${record.nomineePhone}</td>
+            <td>${record.nomineeOrganization}</td>
+            <td>${record.nomineeAddress}</td>
+            <td>${record.categories.join(", ")}</td>
+            <td>${new Date(record.submittedAt).toLocaleString()}</td>
+            <td>
+              ${
+                record.image
+                  ? `<a href="http://localhost:3002/${record.image}" target="_blank">
+                      <img src="http://localhost:3002/${record.image}" 
+                           alt="Nominee Image" width="50" height="50" 
+                           style="border-radius: 5px;">
+                     </a>`
+                  : "No Image"
+              }
+            </td>
+            <td>
+              ${
+                record.file
+                  ? `<a href="http://localhost:3002/${record.file}" target="_blank">Download File</a>`
+                  : "No File"
+              }
+            </td>
+          `;
+
                 tbody.appendChild(tr);
               });
             } else {

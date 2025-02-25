@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 
 const app = express();
 
@@ -10,29 +12,51 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use("/uploads", express.static("uploads")); // Serve uploaded files statically
 
 // MongoDB Connection
-const mongoURI =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://katendek64:B9UwNajzpPwBao3h@clusterawards.3yxlv.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAwards";
+const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => console.log("Connected to MongoDB"));
 
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Store files in 'uploads/' folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+  },
+});
+
+// Multer file filter
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype.startsWith("image/") ||
+    file.mimetype.startsWith("application/")
+  ) {
+    cb(null, true);
+  } else {
+    cb(new Error("Invalid file type"), false);
+  }
+};
+
+// Multer upload middleware
+const upload = multer({ storage, fileFilter });
+
 // Mongoose Schema
 const nominationSchema = new mongoose.Schema({
-  // Nominator Details
-  nominatorTitle: { type: String, default: "" }, // Optional field
+  nominatorTitle: { type: String, default: "" },
   nominatorFirstName: { type: String, required: true },
   nominatorLastName: { type: String, required: true },
   nominatorEmail: { type: String, required: true },
   nominatorPhone: { type: String, required: true },
   nominatorOrganization: { type: String, required: true },
 
-  // Nominee Details
-  nomineeTitle: { type: String, default: "" }, // Optional field
+  nomineeTitle: { type: String, default: "" },
   nomineeFirstName: { type: String, required: true },
   nomineeLastName: { type: String, required: true },
   nomineeEmail: { type: String, required: true },
@@ -40,76 +64,83 @@ const nominationSchema = new mongoose.Schema({
   nomineeOrganization: { type: String, required: true },
   nomineeAddress: { type: String, required: true },
 
-  // Categories
   categories: { type: [String], required: true },
 
-  // Timestamp
+  videoLink: { type: String, default: "" },
+  otherLinks: { type: String, default: "" },
+  file: { type: String, default: "" },
+  image: { type: String, default: "" },
+
   submittedAt: { type: Date, default: Date.now },
 });
 
 const Nomination = mongoose.model("Nomination", nominationSchema);
 
-// Endpoint to submit a nomination
-app.post("/api/submit-nomination", async (req, res) => {
-  try {
-    const {
-      // Nominator Details
-      nominatorTitle,
-      nominatorFirstName,
-      nominatorLastName,
-      nominatorEmail,
-      nominatorPhone,
-      nominatorOrganization,
+// Endpoint to submit a nomination (with file upload)
+app.post(
+  "/api/submit-nomination",
+  upload.fields([{ name: "file" }, { name: "image" }]),
+  async (req, res) => {
+    console.log(req.body);
+    try {
+      const {
+        nominatorTitle,
+        nominatorFirstName,
+        nominatorLastName,
+        nominatorEmail,
+        nominatorPhone,
+        nominatorOrganization,
 
-      // Nominee Details
-      nomineeTitle,
-      nomineeFirstName,
-      nomineeLastName,
-      nomineeEmail,
-      nomineePhone,
-      nomineeOrganization,
-      nomineeAddress,
+        nomineeTitle,
+        nomineeFirstName,
+        nomineeLastName,
+        nomineeEmail,
+        nomineePhone,
+        nomineeOrganization,
+        nomineeAddress,
 
-      // Categories
-      categories,
-    } = req.body;
+        categories,
+        videoLink,
+        otherLinks,
+      } = req.body;
 
-    // Parse categories from JSON string (if sent as a string)
-    const parsedCategories = JSON.parse(categories || "[]");
+      const parsedCategories = JSON.parse(categories || "[]");
 
-    const nomination = new Nomination({
-      // Nominator Details
-      nominatorTitle: nominatorTitle || "", // Default to empty string if not provided
-      nominatorFirstName,
-      nominatorLastName,
-      nominatorEmail,
-      nominatorPhone,
-      nominatorOrganization,
+      const nomination = new Nomination({
+        nominatorTitle: nominatorTitle || "",
+        nominatorFirstName,
+        nominatorLastName,
+        nominatorEmail,
+        nominatorPhone,
+        nominatorOrganization,
 
-      // Nominee Details
-      nomineeTitle: nomineeTitle || "", // Default to empty string if not provided
-      nomineeFirstName,
-      nomineeLastName,
-      nomineeEmail,
-      nomineePhone,
-      nomineeOrganization,
-      nomineeAddress,
+        nomineeTitle: nomineeTitle || "",
+        nomineeFirstName,
+        nomineeLastName,
+        nomineeEmail,
+        nomineePhone,
+        nomineeOrganization,
+        nomineeAddress,
 
-      // Categories
-      categories: Array.isArray(parsedCategories) ? parsedCategories : [],
-    });
+        categories: Array.isArray(parsedCategories) ? parsedCategories : [],
+        videoLink,
+        otherLinks,
+        file: req.files["file"] ? req.files["file"][0].path : "",
+        image: req.files["image"] ? req.files["image"][0].path : "",
+      });
 
-    await nomination.save();
-    res
-      .status(201)
-      .json({ message: "Nomination submitted successfully", nomination });
-  } catch (error) {
-    console.error("Submission error:", error);
-    res.status(500).json({ error: "Internal server error" });
+      await nomination.save();
+      res
+        .status(201)
+        .json({ message: "Nomination submitted successfully", nomination });
+    } catch (error) {
+      console.error("Submission error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
-});
+);
 
-// Endpoint to get all nominations (for admin or review purposes)
+// Endpoint to get all nominations
 app.get("/api/nominations", async (req, res) => {
   try {
     const nominations = await Nomination.find().sort({ submittedAt: -1 });
