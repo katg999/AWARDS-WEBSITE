@@ -130,11 +130,15 @@ app.post(
       });
 
       await nomination.save();
-      res
-        .status(201)
-        .json({ message: "Nomination submitted successfully", nomination });
+      res.status(201).json({ message: "Nomination submitted successfully" });
     } catch (error) {
-      console.error("Submission error:", error);
+      if (error.name === "ValidationError") {
+        const errors = Object.keys(error.errors).map((key) => ({
+          field: key,
+          message: error.errors[key].message,
+        }));
+        return res.status(400).json({ errors });
+      }
       res.status(500).json({ error: "Internal server error" });
     }
   }

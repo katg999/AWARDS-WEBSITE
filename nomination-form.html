@@ -626,9 +626,18 @@
           console.log("Server Response:", data);
 
           if (!response.ok) {
-            formMessages.innerHTML = `<div class="alert alert-danger">${
-              data.error || "Submission failed"
-            }</div>`;
+            if (data.errors) {
+              data.errors.forEach((err) => {
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "alert alert-danger";
+                errorDiv.innerText = `${err.field}: ${err.message}`;
+                formMessages.appendChild(errorDiv);
+              });
+            } else {
+              formMessages.innerHTML = `<div class="alert alert-danger">${
+                data.error || "Submission failed"
+              }</div>`;
+            }
             return;
           }
 
