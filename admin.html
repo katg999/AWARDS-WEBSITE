@@ -158,6 +158,8 @@
               <th>Submitted At</th>
               <th>Nominee Image</th>
               <th>File</th>
+              <th>videoLink</th>
+              <th>otherLinks</th>
             </tr>
           </thead>
           <tbody id="recordsTableBody">
@@ -326,6 +328,7 @@
             <td>${record.nomineePhone}</td>
             <td>${record.nomineeOrganization}</td>
             <td>${record.nomineeAddress}</td>
+            
             <td>${record.categories.join(", ")}</td>
             <td>${new Date(record.submittedAt).toLocaleString()}</td>
             <td>
@@ -346,6 +349,8 @@
                   : "No File"
               }
             </td>
+            <td>${record.videoLink}</td>
+            <td>${record.otherLinks}</td>
           `;
 
                 tbody.appendChild(tr);
