@@ -79,7 +79,7 @@ const Nomination = mongoose.model("Nomination", nominationSchema);
 
 // Endpoint to submit a nomination (with file upload)
 app.post(
-  "/api/submit-nomination",
+  "/submit-nomination",
   upload.fields([{ name: "file" }, { name: "image" }]),
   async (req, res) => {
     console.log(req.body);
@@ -146,7 +146,7 @@ app.post(
 );
 
 // Endpoint to get all nominations
-app.get("/api/nominations", async (req, res) => {
+app.get("/nominations", async (req, res) => {
   try {
     const nominations = await Nomination.find().sort({ submittedAt: -1 });
     res.json(nominations);
