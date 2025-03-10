@@ -1,8 +1,0 @@
-[build]
-  functions = "netlify/functions" # Path to your Netlify Functions
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-  force = true
