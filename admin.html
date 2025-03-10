@@ -302,7 +302,7 @@
       });
 
       function fetchRecords() {
-        fetch("http://localhost:3002/nominations")
+        fetch("https://awards-website-backend.onrender.com/nominations")
           .then((response) => response.json())
           .then((data) => {
             if (Array.isArray(data)) {
