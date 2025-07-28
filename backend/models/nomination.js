@@ -15,8 +15,10 @@ app.use(cors());
 // MongoDB Connection
 const mongoURI =
   process.env.MONGODB_URI ||
-  "mongodb+srv://katendek64:B9UwNajzpPwBao3h@clusterawards.3yxlv.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAwards";
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+  mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
